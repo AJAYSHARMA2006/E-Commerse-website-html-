@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Us - Shopping Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .join-us-section {
+      background-color: #2d3e50;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    .join-us-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .join-us-section p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .join-us-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .join-us-form input[type="text"],
+    .join-us-form input[type="email"],
+    .join-us-form input[type="password"] {
+      padding: 12px;
+      font-size: 16px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+    .join-us-form button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 250px;
+    }
+    .join-us-form button:hover {
+      background-color: #e67e22;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="join-us-section">
+    <h2>Join Us Today!</h2>
+    <p>Sign up for exclusive updates, offers, and the latest news from our store.</p>
+
+    <form class="join-us-form" id="joinUsForm" action="/submit" method="POST" onsubmit="return validateForm()">
+      <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+      <input type="password" id="password" name="password" placeholder="Create a Password" required>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Join Now</button>
+      
+      <div class="error-message" id="error-message"></div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      // Clear any previous error messages
+      document.getElementById("error-message").innerHTML = "";
+      
+      // Get the form field values
+      const fullName = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Basic form validation
+      if (fullName === "" || email === "" || password === "" || confirmPassword === "") {
+        document.getElementById("error-message").innerHTML = "All fields are required!";
+        return false;
+      }
+
+      // Password match validation
+      if (password !== confirmPassword) {
+        document.getElementById("error-message").innerHTML = "Passwords do not match!";
+        return false;
+      }
+
+      // You can add more validation logic, such as checking for a valid email format
+      return true; // Allow form submission if all checks pass
+    }
+  </script>
+
+</body>
+</html>
